@@ -22,12 +22,14 @@ def diff(minuend, subtrahend, negative = False):
 
 
 
+
 # --------- Проверки -----------------------
 
 print(diff(10, 5))     # Должно вернуться 5
 print(diff(100, 120))  # Должно вернуться 0
 print(diff(45, 13))    # Должно вернуться 32
 print(diff(3.3*3, 9.9))
+print(diff(1, 5, True))
 
 
 
