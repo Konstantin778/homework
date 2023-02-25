@@ -111,4 +111,3 @@ print(reformat_date(dates))
 # THU - FRI: 12:00 - 23:00
 # SAT: 10:00 - 23:00
 # SUN: 11:00 - 23:00
-
