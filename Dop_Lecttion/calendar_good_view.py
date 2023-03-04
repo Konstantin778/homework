@@ -28,19 +28,19 @@ def reformat_date(date_list: list):
     for item in date_list:
         if len(item) != 3 and type(item) is not dict:
             return "Ошибка. Необходимо ввести список словарей"
-        if "day" not in item.keys() or "from" not in item.keys() or "to" not in item.keys():
+        if {"day", "from", "to"} != item.keys():
                 return "Ошибка. Элемент списка должен быть составлен в нужном формате"
 
     ordered_list = sorted(date_list, key=lambda x: x["day"])
-    days_order = {"пн": 0, "вт": 1, "ср": 2, "чт": 3, "пт": 4, "сб": 5, "вс": 6}
+    days_order = {0: "пн", 1: "вт", 2: "ср", 3: "чт", 4: "пт", 5: "сб", 6: "вс"}
+    temporary = []
 
     for key, value in days_order.items():
         for elem in ordered_list:
-            if value == elem["day"]:
-                del elem["day"]
-                elem["day"] = key
+            if key == elem["day"]:
+                elem["day"] = value
+                temporary.append((elem["day"].upper(), f'{elem["from"]} - {elem["to"]}'))
 
-    temporary = [(day["day"].upper(), f'{day["from"]} - {day["to"]}') for day in ordered_list]
     zipped_list = list(zip(temporary, temporary[1:]))
 
     days_interval = []

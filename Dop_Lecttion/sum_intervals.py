@@ -38,14 +38,20 @@
 
 def is_list(intervals: list):
     if type(intervals) is not list:
-        return "Ошибка. Необходимо ввести список"
+        print("Ошибка. Необходимо ввести список")
+        raise TypeError
 
     for interval in intervals:
-        if type(interval) is not list or len(interval) != 2:
-            return "Ошибка. Интервал должен являться списком и состоять из 2х элементов"
+        if type(interval) is not list:
+            print("Ошибка. Интервал должен являться списком")
+            raise TypeError
+        if len(interval) != 2:
+            print("Ошибка. Интервал должен являться списком и состоять из 2х элементов")
+            raise IndexError
 
         if interval[0] > interval[-1]:
-            return "Ошибка. Второй элемент интервала должен быть больше первого"
+            print("Ошибка. Второй элемент интервала должен быть больше первого")
+            raise ValueError
 
         else:
             continue
@@ -54,25 +60,26 @@ def is_list(intervals: list):
 
 
 def sum_len_intervals(intervals: list):
-    if is_list(intervals) == intervals:
-        interval_lens = [i[-1] - i[0] for i in intervals]
-        return sum(interval_lens)
+    try:
+        is_list(intervals)
+    except Exception as e:
+        raise Exception
 
-    else:
-        return is_list(intervals)
-
+    interval_lens = [i[-1] - i[0] for i in intervals]
+    return sum(interval_lens)
 
 def sum_intervals(intervals: list):
-    if is_list(intervals) == intervals:
-        interval_sums = [i[-1] + i[0] for i in intervals]
-        return sum(interval_sums)
+    try:
+        is_list(intervals)
+    except Exception as e:
+        raise Exception
 
-    else:
-        return is_list(intervals)
+    interval_sums = [i[-1] + i[0] for i in intervals]
+    return sum(interval_sums)
 
 
 interval_1 = [
-    [1, 2],
+    [1, 2, 3],
     [6, 10],
     [11, 15]
 ]

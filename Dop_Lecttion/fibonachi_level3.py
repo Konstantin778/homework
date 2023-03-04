@@ -19,11 +19,8 @@ def fibo(n, start):
     for _ in range(start):
         numbers_list.append(1)
 
-    length = len(numbers_list)
-    for i in range(length, n):
-        summary = 0
-        for s in range(1, length + 1):
-            summary += numbers_list[i - s]
+    for i in range(start, n):
+        summary = sum(numbers_list[-start:])
         numbers_list.append(summary)
 
     return numbers_list[-1]
